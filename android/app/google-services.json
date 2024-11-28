@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "203505853557",
+    "project_id": "moviecatch-6f997",
+    "storage_bucket": "moviecatch-6f997.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203505853557:android:3e8fe23ba25feef45bc43c",
+        "android_client_info": {
+          "package_name": "com.darts.MovieCatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyjGR0SPwRWoKC1-38nN_FxNUDpMcvi78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
