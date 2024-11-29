@@ -22,7 +22,6 @@ export const fetchMovies = async (country = 'us', services = 'netflix') => {
           },
         }
       );
-      console.log(response.data.shows);
     return response.data.shows;
 
   } catch (error) {
