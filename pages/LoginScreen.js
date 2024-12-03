@@ -12,8 +12,8 @@ export default function LoginScreen({ navigation }) {
 
   const onSubmit = async (data) => {
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-      navigation.navigate('Home', { username: data.email });
+      const userdata = await signInWithEmailAndPassword(auth, data.email, data.password);
+      navigation.navigate('Home', { username: userdata.user.displayName });
     } catch (error) {
       alert(error.message);
     }
