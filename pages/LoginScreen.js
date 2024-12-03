@@ -5,6 +5,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { Text, TextInput, Button, Title } from "react-native-paper";
 
+
+
 export default function LoginScreen({ navigation }) {
   const { control, handleSubmit } = useForm();
 
@@ -72,7 +74,8 @@ export default function LoginScreen({ navigation }) {
       >
         Register
       </Button>
-    </View>
+     
+      </View>
   );
 }
 

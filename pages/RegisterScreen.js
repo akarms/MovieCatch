@@ -15,7 +15,6 @@ export default function RegisterScreen({ navigation }) {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const user = userCredential.user;
 
-      // Update user's display name
       await updateProfile(user, {
         displayName: data.name,
       });
