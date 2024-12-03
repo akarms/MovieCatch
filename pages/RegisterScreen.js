@@ -3,11 +3,14 @@ import { View, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
-import { Text, TextInput, Button, Title, ActivityIndicator } from 'react-native-paper';
+import { Text, TextInput, Button, Title, ActivityIndicator , Dialog } from 'react-native-paper';
 
 export default function RegisterScreen({ navigation }) {
   const { control, handleSubmit, formState: { errors } } = useForm();
   const [loading, setLoading] = useState(false);
+  const [successDialog, setSuccessDialog] = React.useState(false);
+  const showDialog = () => setSuccessDialog(true);
+  const hideDialog = () => setSuccessDialog(false);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -19,7 +22,10 @@ export default function RegisterScreen({ navigation }) {
         displayName: data.name,
       });
 
-      alert("Registration Successful");
+      showDialog();
+      //stay for a while 
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
       navigation.navigate('Login');
     } catch (error) {
       console.error(error.message);
@@ -103,6 +109,25 @@ export default function RegisterScreen({ navigation }) {
       >
         {loading ? <ActivityIndicator animating={true} color="#fff" /> : 'Sign Up'}
       </Button>
+      <Dialog visible={successDialog} onDismiss={hideDialog} style={styles.dialog}>
+  <Dialog.Icon icon="check-circle" size={30} color="#4CAF50" />
+  <Dialog.Title style={styles.dialogTitle}>Registration Successful</Dialog.Title>
+  <Dialog.Content>
+    <Text style={styles.dialogContent}>
+      Your account has been created successfully! You can now log in and start using MovieCatch.
+    </Text>
+  </Dialog.Content>
+  <Dialog.Actions>
+    <Button
+      mode="contained"
+      onPress={hideDialog}
+      style={styles.dialogButton}
+    >
+      Continue
+    </Button>
+  </Dialog.Actions>
+</Dialog>
+
     </View>
   );
 }
@@ -113,4 +138,27 @@ const styles = StyleSheet.create({
   input: { marginBottom: 15 },
   button: { marginVertical: 10 },
   error: { color: 'red', marginBottom: 10, fontSize: 12 },
+  dialog: {
+    borderRadius: 8,
+    backgroundColor: '#fefefe',
+  },
+  dialogTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#333',
+  },
+  dialogContent: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#666',
+    marginVertical: 10,
+  },
+  dialogButton: {
+    alignSelf: 'center',
+    backgroundColor: '#4CAF50',
+    borderRadius: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+  },
 });
