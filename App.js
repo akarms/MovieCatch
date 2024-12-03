@@ -13,13 +13,12 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#5A4AF4", // Customize primary color
-    accent: "#1EA5FC", // Customize accent color
-    background: "#f5f5f5", // Customize background color
-    text: "#333333", // Customize text color
-    surface: "#ffffff", // Customize card surface color
-    placeholder: "#888888", // Customize placeholder text color
-    
+    primary: "#5A4AF4", 
+    accent: "#1EA5FC", 
+    background: "#f5f5f5", 
+    text: "#333333", 
+    surface: "#ffffff", 
+    placeholder: "#888888", 
   },
 };
 
@@ -27,10 +26,13 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Navigator initialRouteName="Login"   
+        screenOptions={{
+          headerTitleStyle: { fontSize: 16 },
+        }}>
+          <Stack.Screen name="Login" component={LoginScreen} options={{title: "Movie Catch"}} />
           <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} options={{title: "Return to Login"}} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
